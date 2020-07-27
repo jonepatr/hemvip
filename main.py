@@ -51,7 +51,7 @@ def generate_config():
                     "id": "trial_random_43",
                     "name": "MUSHRA - Random 1",
                     "content": "Due to randomization, this page will be either the second MUSHRA page or the third MUSHRA page.",
-                    "video_stimuli": {
+                    "stimuli": {
                         "C1": "/videos/small.mp4",
                         "C2": "/videos/sample-mp4-file.mp4",
                         "C3": "/videos/big_buck_bunny.mp4",
