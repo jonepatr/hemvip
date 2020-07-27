@@ -4,8 +4,11 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    volumes:
+      - ./:/app
     ports:
       - "8000:80"
+    command: /start-reload.sh
     depends_on:
       - db
   db:

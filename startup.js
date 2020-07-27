@@ -80,6 +80,9 @@ function addPagesToPageManager(_pageManager, _pages) {
       } else if (pageConfig.type == "volume") {
         var volumePage = new VolumePage(_pageManager, audioContext, audioFileLoader, pageConfig, config.bufferSize, errorHandler, config.language);
         _pageManager.addPage(volumePage);
+      } else if (pageConfig.type == "video") {
+        var mushraPage = new VideoPage(_pageManager, session, pageConfig, errorHandler, config.language);
+        _pageManager.addPage(mushraPage);
       } else if (pageConfig.type == "mushra") {
         var mushraPage = new MushraPage(_pageManager, audioContext, config.bufferSize, audioFileLoader, session, pageConfig, mushraValidator, errorHandler, config.language);
         _pageManager.addPage(mushraPage);
@@ -127,6 +130,10 @@ function startup(config) {
   if (config == null) {
     errorHandler.sendError("URL couldn't be found!");
     callbackURLFound();
+  }
+
+  if ($(window).width() < 640) {
+    errorHandler.sendError("Please use a computer for this experiment.");
   }
 
   $.mobile.page.prototype.options.theme = 'a';

@@ -1,2 +1,3 @@
-FROM php:7.0-apache
-COPY ./ /var/www/html/
+FROM tiangolo/uvicorn-gunicorn-fastapi
+COPY ./ /app
+RUN pip install aiofiles pyyaml python-multipart pymongo
