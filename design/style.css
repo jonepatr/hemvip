@@ -23,6 +23,52 @@ input[type=number] {
   filter:  brightness(1.1) contrast(0.8) brightness(1.1) contrast(0.8) brightness(1.1) contrast(0.8) brightness(1.1) contrast(0.8) brightness(1.1) contrast(0.8)  brightness(1.05);  
 }
 
+#mushra_items .slider-color-blue .ui-slider-bg {
+  background-color: blue;
+}
+
+#mushra_items .slider-color-red .ui-slider-bg {
+  background-color: red;
+}
+
+#mushra_items .slider-color-green .ui-slider-bg {
+  background-color: green;
+}
+
+#mushra_items .slider-color-yellow .ui-slider-bg {
+  background-color: yellow;
+}
+
+#mushra_items .slider-color-purple .ui-slider-bg {
+  background-color: purple;
+}
+
+#mushra_items .slider-color-orange .ui-slider-bg {
+  background-color: orange;
+}
+
+#main-video-frame {
+  height: 480px;
+  margin: auto;
+  width: 640px;
+}
+
+#video-placeholder {
+  background-color: #f6f6f6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  border: 1px #999 dashed;
+}
+
+.video-element {
+  display: none;
+  width: 100%;
+  height: 100%;
+}
+
 .noUi-connect {
   background-color: #ED8C01; /* NOTE Background-color between handles alabs-orange */
 }

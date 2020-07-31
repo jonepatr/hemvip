@@ -81,7 +81,7 @@ function addPagesToPageManager(_pageManager, _pages) {
         var volumePage = new VolumePage(_pageManager, audioContext, audioFileLoader, pageConfig, config.bufferSize, errorHandler, config.language);
         _pageManager.addPage(volumePage);
       } else if (pageConfig.type == "video") {
-        var mushraPage = new VideoPage(_pageManager, session, pageConfig, errorHandler, config.language);
+        var mushraPage = new VideoPage(_pageManager, pageTemplateRenderer, session, pageConfig, errorHandler, config.language);
         _pageManager.addPage(mushraPage);
       } else if (pageConfig.type == "mushra") {
         var mushraPage = new MushraPage(_pageManager, audioContext, config.bufferSize, audioFileLoader, session, pageConfig, mushraValidator, errorHandler, config.language);

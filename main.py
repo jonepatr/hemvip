@@ -37,7 +37,6 @@ def save(sessionJSON=Form(...)):
 
     return {}
 
-
 def generate_config():
     return yaml.dump(
         {
@@ -47,10 +46,17 @@ def generate_config():
             "remoteService": "/save",
             "pages": [
                 {
+                    "type": "generic",
+                    "id": "first_page",
+                    "name": "Welcome to our experiment",
+                    "content": "A really really good intro text"
+                },
+                {
                     "type": "video",
                     "id": "trial_random_43",
                     "name": "MUSHRA - Random 1",
-                    "content": "Due to randomization, this page will be either the second MUSHRA page or the third MUSHRA page.",
+                    "question": "A truly beautiful question",
+                    "content": "Hello there",
                     "stimuli": {
                         "C1": "/videos/small.mp4",
                         "C2": "/videos/sample-mp4-file.mp4",
@@ -58,16 +64,41 @@ def generate_config():
                     },
                 },
                 {
+                    "type": "video",
+                    "id": "trial_random_41",
+                    "name": "MUSHRA - Random 1",
+                    "question": "A truly beautiful question",
+                    "content": "Hello there",
+                    "stimuli": {
+                        "C1": "/videos/sample-mp4-file.mp4",
+                        "C2": "/videos/small.mp4",
+                        "C3": "/videos/big_buck_bunny.mp4",
+                    },
+                },
+                {
+                    "type": "video",
+                    "id": "trial_random_54",
+                    "name": "MUSHRA - Random 1",
+                    "question": "A truly beautiful question",
+                    "content": "Hello there",
+                    "stimuli": {
+                        "C1": "/videos/big_buck_bunny.mp4",
+                        "C2": "/videos/sample-mp4-file.mp4",
+                        "C3": "/videos/small.mp4",
+                    },
+                },
+                {
                     "type": "finish",
                     "name": "Thank you",
-                    "content": "Thank you for attending!",
+                    "question": "?",
+                    "content": "Thank you for your participation!",
                     "showResults": "false",
                     "writeResults": "true",
                     "questionnaire": [
-                        {"type": "text", "label": "eMail", "name": "email"},
+                        {"type": "text", "label": "email", "name": "email"},
                         {
                             "type": "number",
-                            "label": "Age",
+                            "label": "Age (years)",
                             "name": "age",
                             "min": 0,
                             "max": 100,
