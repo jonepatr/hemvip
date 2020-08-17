@@ -1,121 +1,86 @@
-from fastapi import FastAPI, Request, Form
+from fastapi import FastAPI, Request, Form, Query
 from fastapi.staticfiles import StaticFiles
 from starlette.responses import FileResponse, PlainTextResponse
-import yaml
+import random
+from glob import glob
 from pymongo import MongoClient
 import json
 
 
 app = FastAPI(docs_url=None, redoc_url=None)
-app.mount("/lib", StaticFiles(directory="lib"), name="lib")
-app.mount("/design", StaticFiles(directory="design"), name="design")
-app.mount("/videos", StaticFiles(directory="videos"), name="videos")
+app.mount("/prolific/lib", StaticFiles(directory="lib"), name="lib")
+app.mount("/prolific/design", StaticFiles(directory="design"), name="design")
+app.mount("/prolific/videos", StaticFiles(directory="videos"), name="videos")
 
 
-@app.get("/")
-def index():
-    return FileResponse("index.html")
-
-
-@app.get("/startup.js")
+@app.get("/prolific/startup.js")
 def startup():
     return FileResponse("startup.js")
 
 
-@app.get("/configs/{item_id}", response_class=PlainTextResponse)
-def read_item(item_id: str):
-    return generate_config()
+@app.get("/configs/{test_id}/{user_id}", response_class=PlainTextResponse)
+def read_item(test_id: str, user_id: str):
+    return generate_config(test_id, user_id)
+
+
+@app.post("/fail")
+def fail(user_id=Form(...)):
+    client = MongoClient("mongodb://db:27017", username="user", password="passpass")
+    client.test_database.fails.insert_one({"userId": user_id})
+    return {}
+
+
+@app.get("/failed_task", response_class=PlainTextResponse)
+def failed():
+    return "Sorry, you have failed our attention checks."
 
 
 @app.post("/save")
 def save(sessionJSON=Form(...)):
-    print(sessionJSON)
     client = MongoClient("mongodb://db:27017", username="user", password="passpass")
     db = client.test_database
-    response_id = db.responses.insert_one(json.loads(sessionJSON)).inserted_id
-    print(db.responses.find_one({"_id": response_id}))
-
+    data = json.loads(sessionJSON)
+    data["success"] = True
+    db.responses.insert_one(data)
     return {}
 
-def generate_config():
-    return yaml.dump(
-        {
-            "testname": "webMUSHRA Example",
-            "testId": "default_example",
-            "stopOnErrors": True,
-            "remoteService": "/save",
-            "pages": [
-                {
-                    "type": "generic",
-                    "id": "first_page",
-                    "name": "Welcome to our experiment",
-                    "content": "A really really good intro text"
-                },
-                {
-                    "type": "video",
-                    "id": "trial_random_43",
-                    "name": "MUSHRA - Random 1",
-                    "question": "A truly beautiful question",
-                    "content": "Hello there",
-                    "stimuli": {
-                        "C1": "/videos/small.mp4",
-                        "C2": "/videos/sample-mp4-file.mp4",
-                        "C3": "/videos/big_buck_bunny.mp4",
-                    },
-                },
-                {
-                    "type": "video",
-                    "id": "trial_random_41",
-                    "name": "MUSHRA - Random 1",
-                    "question": "A truly beautiful question",
-                    "content": "Hello there",
-                    "stimuli": {
-                        "C1": "/videos/sample-mp4-file.mp4",
-                        "C2": "/videos/small.mp4",
-                        "C3": "/videos/big_buck_bunny.mp4",
-                    },
-                },
-                {
-                    "type": "video",
-                    "id": "trial_random_54",
-                    "name": "MUSHRA - Random 1",
-                    "question": "A truly beautiful question",
-                    "content": "Hello there",
-                    "stimuli": {
-                        "C1": "/videos/big_buck_bunny.mp4",
-                        "C2": "/videos/sample-mp4-file.mp4",
-                        "C3": "/videos/small.mp4",
-                    },
-                },
-                {
-                    "type": "finish",
-                    "name": "Thank you",
-                    "question": "?",
-                    "content": "Thank you for your participation!",
-                    "showResults": "false",
-                    "writeResults": "true",
-                    "questionnaire": [
-                        {"type": "text", "label": "email", "name": "email"},
-                        {
-                            "type": "number",
-                            "label": "Age (years)",
-                            "name": "age",
-                            "min": 0,
-                            "max": 100,
-                            "default": 30,
-                        },
-                        {
-                            "type": "likert",
-                            "name": "gender",
-                            "label": "Gender",
-                            "response": [
-                                {"value": "female", "label": "Female"},
-                                {"value": "male", "label": "Male"},
-                                {"value": "other", "label": "Other"},
-                            ],
-                        },
-                    ],
-                },
-            ],
-        }
-    )
+
+@app.get("/prolific/{test_id}")
+def index(test_id: str, PROLIFIC_PID=Query(...), STUDY_ID=Query(...), SESSION_ID=Query(...)):
+    client = MongoClient("mongodb://db:27017", username="user", password="passpass")
+    responses = client.test_database.responses
+    result_count = responses.find({"testId": test_id, "userId": PROLIFIC_PID}).count()
+    if result_count > 0:
+        return PlainTextResponse(
+            "Sorry, it seems like you have already done this experiment"
+        )
+
+    fail_count = client.test_database.fails.find({"userId": PROLIFIC_PID}).count()
+    if fail_count > 0:
+        return PlainTextResponse("Sorry, you cannot do this experiment anymore")
+    return FileResponse("index.html")
+
+from ruamel.yaml import YAML
+from ruamel.yaml.compat import StringIO
+
+class MyYAML(YAML):
+    def dump(self, data, stream=None, **kw):
+        inefficient = False
+        if stream is None:
+            inefficient = True
+            stream = StringIO()
+        YAML.dump(self, data, stream, **kw)
+        if inefficient:
+            return stream.getvalue()
+
+
+
+def generate_config(test_id, user_id):
+    
+    data = json.load(open(random.choice(list(glob("new_files/*.json")))))
+    data["userId"] = user_id
+    data["pages"][0]["content"].replace('\n', '<br>')
+    
+    yaml = MyYAML()
+    yaml.compact(seq_seq=False, seq_map=False)
+    return yaml.dump(data)

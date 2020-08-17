@@ -47,6 +47,14 @@ input[type=number] {
   background-color: orange;
 }
 
+#mushra_items .slider-color-fuchsia .ui-slider-bg {
+  background-color: fuchsia;
+}
+
+#mushra_items .slider-color-aqua .ui-slider-bg {
+  background-color: aqua;
+}
+
 #main-video-frame {
   height: 480px;
   margin: auto;

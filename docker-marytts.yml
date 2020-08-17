@@ -1,0 +1,4 @@
+marytts:
+    image: synesthesiam/marytts:5.2
+    ports:
+      - 59125:59125

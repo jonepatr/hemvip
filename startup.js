@@ -81,7 +81,7 @@ function addPagesToPageManager(_pageManager, _pages) {
         var volumePage = new VolumePage(_pageManager, audioContext, audioFileLoader, pageConfig, config.bufferSize, errorHandler, config.language);
         _pageManager.addPage(volumePage);
       } else if (pageConfig.type == "video") {
-        var mushraPage = new VideoPage(_pageManager, pageTemplateRenderer, session, pageConfig, errorHandler, config.language);
+        var mushraPage = new VideoPage(_pageManager, pageTemplateRenderer, session, config, pageConfig, errorHandler, config.language);
         _pageManager.addPage(mushraPage);
       } else if (pageConfig.type == "mushra") {
         var mushraPage = new MushraPage(_pageManager, audioContext, config.bufferSize, audioFileLoader, session, pageConfig, mushraValidator, errorHandler, config.language);
@@ -200,6 +200,7 @@ function startup(config) {
 
   session = new Session();
   session.testId = config.testId;
+  session.userId = config.userId;
   session.config = configFile;
 
   if (config.language == undefined) {
@@ -219,19 +220,19 @@ function startup(config) {
 
 // start code (loads config) 
 
+var config = null;
+// var configArg = getParameterByName("config");
+var configFile = '';
+
 function getParameterByName(name) {
   var match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
   return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
 }
+var userId = getParameterByName("PROLIFIC_PID");
+var testId = getParameterByName("STUDY_ID");
 
-var config = null;
-var configArg = getParameterByName("config");
-var configFile = '';
-if (configArg) {
-  configFile = 'configs/' + configArg;
-} else {
-  configFile = 'configs/default.yaml';
-}
+
+configFile = '/configs/' + testId + "/" + userId
 
 
 // global variables

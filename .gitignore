@@ -63,3 +63,9 @@ Temporary Items
 *.pyc
 package-lock.json
 videos
+gesticulator_videos
+gesticulator_videos2
+tools/audios
+tools/fakes
+experiment_files
+new_files
