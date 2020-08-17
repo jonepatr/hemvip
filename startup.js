@@ -247,8 +247,7 @@ var session = null;
 var pageTemplateRenderer = null;
 var interval2 = null;
 
-
-YAML.load(configFile, (function(result) {
+$.getJSON(configFile, function(result) {
   config = result;
   startup(result);
-}));
+});
