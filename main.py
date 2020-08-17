@@ -24,7 +24,7 @@ def read_item(test_id: str, user_id: str):
 
 @app.post("/fail")
 def fail(user_id=Form(...)):
-    client = MongoClient("mongodb://db:27017", username="user", password="passpass")
+    client = MongoClient("mongodb://db:27017", username="***REMOVED***", password="***REMOVED***")
     client.test_database.fails.insert_one({"userId": user_id})
     return {}
 
@@ -36,7 +36,7 @@ def failed():
 
 @app.post("/save")
 def save(sessionJSON=Form(...)):
-    client = MongoClient("mongodb://db:27017", username="user", password="passpass")
+    client = MongoClient("mongodb://db:27017", username="***REMOVED***", password="***REMOVED***")
     db = client.test_database
     data = json.loads(sessionJSON)
     data["success"] = True
@@ -46,7 +46,7 @@ def save(sessionJSON=Form(...)):
 
 @app.get("/prolific/{test_id}")
 def index(test_id: str, PROLIFIC_PID=Query(...), STUDY_ID=Query(...), SESSION_ID=Query(...)):
-    client = MongoClient("mongodb://db:27017", username="user", password="passpass")
+    client = MongoClient("mongodb://db:27017", username="***REMOVED***", password="***REMOVED***")
     responses = client.test_database.responses
     result_count = responses.find({"testId": test_id, "userId": PROLIFIC_PID}).count()
     if result_count > 0:
