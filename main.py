@@ -10,7 +10,6 @@ import json
 app = FastAPI(docs_url=None, redoc_url=None)
 app.mount("/prolific/lib", StaticFiles(directory="lib"), name="lib")
 app.mount("/prolific/design", StaticFiles(directory="design"), name="design")
-app.mount("/prolific/videos", StaticFiles(directory="videos"), name="videos")
 
 
 @app.get("/prolific/startup.js")
