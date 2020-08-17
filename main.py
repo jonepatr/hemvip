@@ -5,11 +5,20 @@ import random
 from glob import glob
 from pymongo import MongoClient
 import json
-
+import os
 
 app = FastAPI(docs_url=None, redoc_url=None)
 app.mount("/prolific/lib", StaticFiles(directory="lib"), name="lib")
 app.mount("/prolific/design", StaticFiles(directory="design"), name="design")
+
+
+def connect_to_db():
+    client = MongoClient(
+        "mongodb://db:27017",
+        username=os.environ["MONGO_USERNAME"],
+        password=os.environ["MONGO_PASSWORD"],
+    )
+    return client.test_database
 
 
 @app.get("/prolific/startup.js")
@@ -17,15 +26,16 @@ def startup():
     return FileResponse("startup.js")
 
 
-@app.get("/configs/{test_id}/{user_id}", response_class=PlainTextResponse)
-def read_item(test_id: str, user_id: str):
-    return generate_config(test_id, user_id)
+@app.get("/configs/{test_id}/{user_id}")
+def configs(test_id: str, user_id: str):
+    data = json.load(open(random.choice(list(glob("new_files/*.json")))))
+    data["userId"] = user_id
+    return data
 
 
 @app.post("/fail")
 def fail(user_id=Form(...)):
-    client = MongoClient("mongodb://db:27017", username="sigge", password="siggepasspass")
-    client.test_database.fails.insert_one({"userId": user_id})
+    connect_to_db().fails.insert_one({"userId": user_id})
     return {}
 
 
@@ -36,50 +46,26 @@ def failed():
 
 @app.post("/save")
 def save(sessionJSON=Form(...)):
-    client = MongoClient("mongodb://db:27017", username="sigge", password="siggepasspass")
-    db = client.test_database
     data = json.loads(sessionJSON)
     data["success"] = True
-    db.responses.insert_one(data)
+    connect_to_db().responses.insert_one(data)
     return {}
 
 
 @app.get("/prolific/{test_id}")
-def index(test_id: str, PROLIFIC_PID=Query(...), STUDY_ID=Query(...), SESSION_ID=Query(...)):
-    client = MongoClient("mongodb://db:27017", username="sigge", password="siggepasspass")
-    responses = client.test_database.responses
-    result_count = responses.find({"testId": test_id, "userId": PROLIFIC_PID}).count()
+def index(
+    test_id: str, PROLIFIC_PID=Query(...), STUDY_ID=Query(...), SESSION_ID=Query(...)
+):
+    db = connect_to_db()
+
+    result_count = db.responses.find({"testId": test_id, "userId": PROLIFIC_PID}).count()
     if result_count > 0:
         return PlainTextResponse(
             "Sorry, it seems like you have already done this experiment"
         )
 
-    fail_count = client.test_database.fails.find({"userId": PROLIFIC_PID}).count()
+    fail_count = db.fails.find({"userId": PROLIFIC_PID}).count()
     if fail_count > 0:
         return PlainTextResponse("Sorry, you cannot do this experiment anymore")
     return FileResponse("index.html")
 
-from ruamel.yaml import YAML
-from ruamel.yaml.compat import StringIO
-
-class MyYAML(YAML):
-    def dump(self, data, stream=None, **kw):
-        inefficient = False
-        if stream is None:
-            inefficient = True
-            stream = StringIO()
-        YAML.dump(self, data, stream, **kw)
-        if inefficient:
-            return stream.getvalue()
-
-
-
-def generate_config(test_id, user_id):
-    
-    data = json.load(open(random.choice(list(glob("new_files/*.json")))))
-    data["userId"] = user_id
-    data["pages"][0]["content"].replace('\n', '<br>')
-    
-    yaml = MyYAML()
-    yaml.compact(seq_seq=False, seq_map=False)
-    return yaml.dump(data)
