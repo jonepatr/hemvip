@@ -132,7 +132,7 @@ function startup(config) {
     callbackURLFound();
   }
 
-  if ($(window).width() < 640) {
+  if ($(window).width() < 1100) {
     errorHandler.sendError("Please use a computer for this experiment.");
   }
 
@@ -229,7 +229,7 @@ function getParameterByName(name) {
   return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
 }
 var userId = getParameterByName("PROLIFIC_PID");
-var testId = getParameterByName("STUDY_ID");
+var testId = window.location.pathname.split("/").pop();
 
 
 configFile = '/configs/' + testId + "/" + userId
