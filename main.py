@@ -1,16 +1,20 @@
-from fastapi import FastAPI, Request, Form, Query
-from fastapi.staticfiles import StaticFiles
-from starlette.responses import FileResponse, PlainTextResponse
-import random
-from glob import glob
-from pymongo import MongoClient
 import json
 import os
+import random
+import re
+from glob import glob
+from pathlib import Path
+
+from fastapi import FastAPI, Form, Query, Request
+from fastapi.staticfiles import StaticFiles
+from pymongo import MongoClient
+from starlette.responses import FileResponse, PlainTextResponse
+from datetime import datetime, timedelta
+
 
 app = FastAPI(docs_url=None, redoc_url=None)
 app.mount("/prolific/lib", StaticFiles(directory="lib"), name="lib")
 app.mount("/prolific/design", StaticFiles(directory="design"), name="design")
-
 
 def connect_to_db():
     client = MongoClient(
@@ -28,14 +32,20 @@ def startup():
 
 @app.get("/configs/{test_id}/{user_id}")
 def configs(test_id: str, user_id: str):
-    data = json.load(open(random.choice(list(glob("new_files/*.json")))))
+    status = connect_to_db().status.find_one(
+        {"userId": user_id, "testId": test_id, "status": "ACTIVE"}
+    )
+    data = json.load(open(status["experiment_file"]))
     data["userId"] = user_id
+    data["testId"] = test_id
     return data
 
 
 @app.post("/fail")
-def fail(user_id=Form(...)):
-    connect_to_db().fails.insert_one({"userId": user_id})
+def fail(user_id=Form(...), test_id=Form(...)):
+    connect_to_db().status.update(
+        {"userId": user_id, "testId": test_id}, {"$set": {"status": "FAILED"}}
+    )
     return {}
 
 
@@ -44,12 +54,17 @@ def failed():
     return "Sorry, you have failed our attention checks."
 
 
-@app.post("/save")
+@app.post("/save", response_class=PlainTextResponse)
 def save(sessionJSON=Form(...)):
     data = json.loads(sessionJSON)
-    data["success"] = True
-    connect_to_db().responses.insert_one(data)
-    return {}
+    db = connect_to_db()
+    db.responses.insert_one(data)
+    db.status.update(
+        {"userId": data["userId"], "testId": data["testId"]},
+        {"$set": {"status": "DONE"}},
+    )
+    code = db.codes.find_one({"testId": data["testId"]})
+    return code["code"]
 
 
 @app.get("/prolific/{test_id}")
@@ -58,14 +73,39 @@ def index(
 ):
     db = connect_to_db()
 
-    result_count = db.responses.find({"testId": test_id, "userId": PROLIFIC_PID}).count()
-    if result_count > 0:
+    db.status.remove(
+        {"status": "ACTIVE", "date": {"$lt": datetime.now() - timedelta(hours=2)}}
+    )
+
+    status = db.status.find_one({"userId": PROLIFIC_PID, "testId": test_id})
+
+    if not status:
+        blocked = db.status.find(
+            {"status": {"$in": ["DONE", "ACTIVE"]}, "testId": test_id}
+        )
+        blocked_files = [x["experiment_file"] for x in blocked]
+
+        config_path = Path("configs") / re.sub(r"\W+", "", test_id)
+        potential_files = [
+            x for x in sorted(config_path.glob("*.json")) if str(x) not in blocked_files
+        ]
+        if not potential_files:
+            return PlainTextResponse("Sorry, you cannot do this experiment right now")
+
+        db.status.insert(
+            {
+                "status": "ACTIVE",
+                "experiment_file": str(potential_files[0]),
+                "testId": test_id,
+                "userId": PROLIFIC_PID,
+                "date": datetime.now(),
+            }
+        )
+
+    elif status["status"] == "FAILED":
+        return PlainTextResponse("Sorry, you cannot do this experiment anymore")
+    elif status["status"] == "DONE":
         return PlainTextResponse(
             "Sorry, it seems like you have already done this experiment"
         )
-
-    fail_count = db.fails.find({"userId": PROLIFIC_PID}).count()
-    if fail_count > 0:
-        return PlainTextResponse("Sorry, you cannot do this experiment anymore")
     return FileResponse("index.html")
-

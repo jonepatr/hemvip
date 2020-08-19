@@ -1,3 +1,3 @@
 FROM tiangolo/uvicorn-gunicorn-fastapi
 COPY ./ /app
-RUN pip install aiofiles pyyaml python-multipart pymongo ruamel.yaml
+RUN pip install aiofiles python-multipart pymongo
