@@ -4,13 +4,19 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    volumes:
+      - ./:/app
     ports:
       - "8000:80"
+    command: /start-reload.sh
     depends_on:
       - db
+    environment:
+      MONGO_USERNAME: ***REMOVED***
+      MONGO_PASSWORD: ***REMOVED***
   db:
     image: mongo
     restart: always
     environment:
-      MONGO_INITDB_ROOT_USERNAME: user
-      MONGO_INITDB_ROOT_PASSWORD: passpass
+      MONGO_INITDB_ROOT_USERNAME: ***REMOVED***
+      MONGO_INITDB_ROOT_PASSWORD: ***REMOVED***

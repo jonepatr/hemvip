@@ -11,8 +11,13 @@ services:
     command: /start-reload.sh
     depends_on:
       - db
+    environment:
+      MONGO_USERNAME: ***REMOVED***
+      MONGO_PASSWORD: ***REMOVED***
   debug:
-    image: python
+    build:
+      context: .
+      dockerfile: debug-docker
     stdin_open: true
     tty: true
     depends_on:
