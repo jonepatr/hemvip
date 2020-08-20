@@ -64,7 +64,7 @@ def save(sessionJSON=Form(...)):
         {"userId": data["userId"], "testId": data["testId"]},
         {"$set": {"status": "DONE", "ended": ended_date}},
     )
-    code = db.codes.find_one({"testId": data["testId"], "ended": ended_date})
+    code = db.codes.find_one({"testId": data["testId"]})
     return code["code"]
 
 
