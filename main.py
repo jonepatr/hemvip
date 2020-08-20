@@ -44,7 +44,7 @@ def configs(test_id: str, user_id: str):
 @app.post("/fail")
 def fail(user_id=Form(...), test_id=Form(...)):
     connect_to_db().status.update(
-        {"userId": user_id, "testId": test_id}, {"$set": {"status": "FAILED"}}
+        {"userId": user_id, "testId": test_id}, {"$set": {"status": "FAILED", "ended": datetime.now()}}
     )
     return {}
 
@@ -59,11 +59,12 @@ def save(sessionJSON=Form(...)):
     data = json.loads(sessionJSON)
     db = connect_to_db()
     db.responses.insert_one(data)
+    ended_date = datetime.now()
     db.status.update(
         {"userId": data["userId"], "testId": data["testId"]},
-        {"$set": {"status": "DONE"}},
+        {"$set": {"status": "DONE", "ended": ended_date}},
     )
-    code = db.codes.find_one({"testId": data["testId"]})
+    code = db.codes.find_one({"testId": data["testId"], "ended": ended_date})
     return code["code"]
 
 
