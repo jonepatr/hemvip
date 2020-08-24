@@ -42,8 +42,15 @@ def configs(test_id: str, user_id: str):
 
 
 @app.post("/fail")
-def fail(user_id=Form(...), test_id=Form(...)):
-    connect_to_db().status.update(
+def fail(user_id=Form(...), test_id=Form(...), sessionJSON=Form(...)):
+    db = connect_to_db()
+
+    data = json.loads(sessionJSON)
+    ended_date = datetime.now()
+    data["ended"] = ended_date
+    db.fail_responses.insert_one(data)
+
+    db.status.update(
         {"userId": user_id, "testId": test_id}, {"$set": {"status": "FAILED", "ended": datetime.now()}}
     )
     return {}
@@ -58,8 +65,9 @@ def failed():
 def save(sessionJSON=Form(...)):
     data = json.loads(sessionJSON)
     db = connect_to_db()
-    db.responses.insert_one(data)
     ended_date = datetime.now()
+    data["ended"] = ended_date
+    db.responses.insert_one(data)
     db.status.update(
         {"userId": data["userId"], "testId": data["testId"]},
         {"$set": {"status": "DONE", "ended": ended_date}},
@@ -75,7 +83,7 @@ def index(
     db = connect_to_db()
 
     db.status.remove(
-        {"status": "ACTIVE", "date": {"$lt": datetime.now() - timedelta(hours=2)}}
+        {"status": "ACTIVE", "date": {"$lt": datetime.now() - timedelta(minutes=100)}}
     )
 
     status = db.status.find_one({"userId": PROLIFIC_PID, "testId": test_id})

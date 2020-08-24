@@ -136,6 +136,10 @@ function startup(config) {
     errorHandler.sendError("Please use a computer for this experiment.");
   }
 
+  if (navigator.appName == 'Microsoft Internet Explorer'){
+    errorHandler.sendError("Please do not use internet explorer for this experiment.");
+  }
+
   $.mobile.page.prototype.options.theme = 'a';
   var interval = setInterval(function() {
     $.mobile.loading("show", {
@@ -202,6 +206,7 @@ function startup(config) {
   session.testId = config.testId;
   session.userId = config.userId;
   session.config = configFile;
+  session.navigator = navigator.userAgent
 
   if (config.language == undefined) {
     config.language = 'en';
