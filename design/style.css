@@ -56,9 +56,9 @@ input[type=number] {
 }
 
 #main-video-frame {
-  height: 480px;
+  height: 400px;
   margin: auto;
-  width: 640px;
+  width: 710px;
 }
 
 #video-placeholder {

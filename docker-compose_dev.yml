@@ -12,8 +12,8 @@ services:
     depends_on:
       - db
     environment:
-      MONGO_USERNAME: sigge
-      MONGO_PASSWORD: siggepasspass
+      MONGO_USERNAME: genea
+      MONGO_PASSWORD: geneapasspass
   debug:
     build:
       context: .
@@ -29,5 +29,5 @@ services:
     ports:
       - "27017:27017"
     environment:
-      MONGO_INITDB_ROOT_USERNAME: sigge
-      MONGO_INITDB_ROOT_PASSWORD: siggepasspass
+      MONGO_INITDB_ROOT_USERNAME: genea
+      MONGO_INITDB_ROOT_PASSWORD: geneapasspass
