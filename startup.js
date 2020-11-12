@@ -13,7 +13,7 @@ function checkOrientation() {//when changing from potrait to landscape change to
 }
 
 window.onresize = function(event) {
-  if (pageManager.getCurrentPage() && pageManager.getCurrentPage().isMushra == true) {
+  if (pageManager && pageManager.getCurrentPage() && pageManager.getCurrentPage().isMushra == true) {
     pageManager.getCurrentPage().renderCanvas("mushra_items");
   }
 
@@ -206,7 +206,7 @@ function startup(config) {
   session.testId = config.testId;
   session.userId = config.userId;
   session.config = configFile;
-  session.navigator = navigator.userAgent
+  session.navigator = navigator.userAgent.replaceAll(";", " -")
 
   if (config.language == undefined) {
     config.language = 'en';

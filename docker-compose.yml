@@ -12,11 +12,11 @@ services:
     depends_on:
       - db
     environment:
-      MONGO_USERNAME: ***REMOVED***
-      MONGO_PASSWORD: ***REMOVED***
+      MONGO_USERNAME: genea
+      MONGO_PASSWORD: geneapasspass
   db:
     image: mongo
     restart: always
     environment:
-      MONGO_INITDB_ROOT_USERNAME: ***REMOVED***
-      MONGO_INITDB_ROOT_PASSWORD: ***REMOVED***
+      MONGO_INITDB_ROOT_USERNAME: genea
+      MONGO_INITDB_ROOT_PASSWORD: geneapasspass

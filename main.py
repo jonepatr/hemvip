@@ -16,6 +16,7 @@ app = FastAPI(docs_url=None, redoc_url=None)
 app.mount("/prolific/lib", StaticFiles(directory="lib"), name="lib")
 app.mount("/prolific/design", StaticFiles(directory="design"), name="design")
 
+
 def connect_to_db():
     client = MongoClient(
         "mongodb://db:27017",
@@ -51,7 +52,8 @@ def fail(user_id=Form(...), test_id=Form(...), sessionJSON=Form(...)):
     db.fail_responses.insert_one(data)
 
     db.status.update(
-        {"userId": user_id, "testId": test_id}, {"$set": {"status": "FAILED", "ended": datetime.now()}}
+        {"userId": user_id, "testId": test_id},
+        {"$set": {"status": "FAILED", "ended": datetime.now()}},
     )
     return {}
 
@@ -59,6 +61,28 @@ def fail(user_id=Form(...), test_id=Form(...), sessionJSON=Form(...)):
 @app.get("/failed_task", response_class=PlainTextResponse)
 def failed():
     return "Sorry, you have failed our attention checks."
+
+
+@app.post("/partial")
+def partial(
+    ratings=Form(...),
+    user_id=Form(...),
+    test_id=Form(...),
+    page_id=Form(...),
+    interaction=Form(...),
+    navigator=Form(...),
+):
+    data = {
+        "modified": datetime.now(),
+        "ratings": ratings,
+        "user_id": user_id,
+        "test_id": test_id,
+        "page_id": page_id,
+        "interaction": interaction,
+        "navigator": navigator,
+    }
+    connect_to_db().partial_responses.insert_one(data)
+    return {}
 
 
 @app.post("/save", response_class=PlainTextResponse)
