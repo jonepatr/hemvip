@@ -145,12 +145,6 @@ body.ui-mobile-viewport, div.ui-mobile-viewport {
   position: relative;
 }
 
-
-#tableBS1116 {
-  border-spacing: 0.4em;
-  position: relative;
-}
-
 td.logo {
   padding: 0 0.5em 0 0.5em;
 }
@@ -185,10 +179,6 @@ td.stopButton {
 
 #conditionNameScale {
   width: 12em;
-}
-
-#BS1116conditionNameScale {
-	width:13em;
 }
 
 #buttonStop, .audioControlElement {

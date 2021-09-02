@@ -10,29 +10,19 @@ These contributions are licensed under the MIT license. See LICENSE.txt for deta
 
 **************************************************************************/
 
-function checkOrientation() {//when changing from potrait to landscape change to the rigth width
-
+//when changing from portrait to landscape change to the right width
+function checkOrientation() {
   var siteWidth = document.body.scrollWidth;
   $("#header").css("width", siteWidth.toString());
-
 }
 
-window.onresize = function(event) {
+window.onresize = function (event) {
   if (pageManager && pageManager.getCurrentPage() && pageManager.getCurrentPage().isMushra == true) {
     pageManager.getCurrentPage().renderCanvas("mushra_items");
   }
 
   checkOrientation();
 };
-
-// $(document).ready(function(){
-// $(window).scroll(function(){
-// $('#header').css({
-// 'left': $(this).scrollLeft()//Note commented because it causes the endless scrolling to the left
-// });
-// });
-// });
-
 
 // callbacks
 function callbackFilesLoaded() {
@@ -86,28 +76,8 @@ function addPagesToPageManager(_pageManager, _pages) {
         var volumePage = new VolumePage(_pageManager, audioContext, audioFileLoader, pageConfig, config.bufferSize, errorHandler, config.language);
         _pageManager.addPage(volumePage);
       } else if (pageConfig.type == "video") {
-        var mushraPage = new VideoPage(_pageManager, pageTemplateRenderer, session, config, pageConfig, errorHandler, config.language);
-        _pageManager.addPage(mushraPage);
-      } else if (pageConfig.type == "mushra") {
-        var mushraPage = new MushraPage(_pageManager, audioContext, config.bufferSize, audioFileLoader, session, pageConfig, mushraValidator, errorHandler, config.language);
-        _pageManager.addPage(mushraPage);
-      } else if ( pageConfig.type == "spatial"){
-        _pageManager.addPage(new SpatialPage(_pageManager, pageConfig, session, audioContext, config.bufferSize, audioFileLoader, errorHandler, config.language));
-      } else if (pageConfig.type == "paired_comparison") {
-        var pcPageManager = new PairedComparisonPageManager();
-        pcPageManager.createPages(_pageManager, pageTemplateRenderer, pageConfig, audioContext, config.bufferSize, audioFileLoader, session, errorHandler, config.language);
-        pcPageManager = null;
-      } else if (pageConfig.type == "bs1116") {
-        var bs1116PageManager = new BS1116PageManager();
-        bs1116PageManager.createPages(_pageManager, pageTemplateRenderer, pageConfig, audioContext, config.bufferSize, audioFileLoader, session, errorHandler, config.language);
-        bs1116PageManager = null;
-      } else if (pageConfig.type == "likert_single_stimulus") {
-        var likertSingleStimulusPageManager = new LikertSingleStimulusPageManager();
-        likertSingleStimulusPageManager.createPages(_pageManager, pageTemplateRenderer, pageConfig, audioContext, config.bufferSize, audioFileLoader, session, errorHandler, config.language);
-        likertSingleStimulusPageManager = null;
-      } else if (pageConfig.type == "likert_multi_stimulus") {
-        var likertMultiStimulusPage = new LikertMultiStimulusPage(pageManager, pageTemplateRenderer, pageConfig, audioContext, config.bufferSize, audioFileLoader, session, errorHandler, config.language);
-        _pageManager.addPage(likertMultiStimulusPage);
+        var videoPage = new VideoPage(_pageManager, pageTemplateRenderer, session, config, pageConfig, errorHandler, config.language);
+        _pageManager.addPage(videoPage);
       } else if (pageConfig.type == "finish") {
         var finishPage = new FinishPage(_pageManager, session, dataSender, pageConfig, config.language);
         _pageManager.addPage(finishPage);
@@ -141,22 +111,22 @@ function startup(config) {
     errorHandler.sendError("Please use a computer for this experiment.");
   }
 
-  if (navigator.appName == 'Microsoft Internet Explorer'){
+  if (navigator.appName == 'Microsoft Internet Explorer') {
     errorHandler.sendError("Please do not use internet explorer for this experiment.");
   }
 
   $.mobile.page.prototype.options.theme = 'a';
-  var interval = setInterval(function() {
+  var interval = setInterval(function () {
     $.mobile.loading("show", {
-      text : "Loading...",
-      textVisible : true,
-      theme : "a",
-      html : ""
+      text: "Loading...",
+      textVisible: true,
+      theme: "a",
+      html: ""
     });
     clearInterval(interval);
   }, 1);
-  
-  
+
+
   if (pageManager !== null) { // clear everything for new experiment
     pageTemplateRenderer.clear();
     $("#page_content").empty();
@@ -169,7 +139,6 @@ function startup(config) {
   pageManager = null;
   audioContext;
   audioFileLoader = null;
-  mushraValidator = null;
   dataSender = null;
   session = null;
   pageTemplateRenderer = null;
@@ -181,9 +150,9 @@ function startup(config) {
   pageManager = new PageManager("pageManager", "page_content", localizer);
   window.AudioContext = window.AudioContext || window.webkitAudioContext;
 
-  if ( typeof AudioContext !== 'undefined') {
+  if (typeof AudioContext !== 'undefined') {
     audioContext = new AudioContext();
-  } else if ( typeof webkitAudioContext !== 'undefined') {
+  } else if (typeof webkitAudioContext !== 'undefined') {
     audioContext = new webkitAudioContext();
   }
 
@@ -204,7 +173,6 @@ function startup(config) {
   audioContext.volume = 1.0;
 
   audioFileLoader = new AudioFileLoader(audioContext, errorHandler);
-  mushraValidator = new MushraValidator(errorHandler);
   dataSender = new DataSender(config);
 
   session = new Session();
@@ -221,7 +189,7 @@ function startup(config) {
 
   addPagesToPageManager(pageManager, config.pages);
 
-  interval2 = setInterval(function() {
+  interval2 = setInterval(function () {
     clearInterval(interval2);
     audioFileLoader.startLoading(callbackFilesLoaded);
   }, 10);
@@ -251,13 +219,12 @@ var localizer = null;
 var pageManager = null;
 var audioContext = null;
 var audioFileLoader = null;
-var mushraValidator = null;
 var dataSender = null;
 var session = null;
 var pageTemplateRenderer = null;
 var interval2 = null;
 
-$.getJSON(configFile, function(result) {
+$.getJSON(configFile, function (result) {
   config = result;
   startup(result);
 });
