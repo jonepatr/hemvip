@@ -61,20 +61,3 @@ Temporary Items
 .apdisk
 
 *.pyc
-package-lock.json
-videos
-gesticulator_videos
-gesticulator_videos2
-tools/audios
-tools/fakes
-experiment_files
-new_files
-configs
-old_configs
-genea_videos
-tools/fake_study_1*
-tools/fake_study_2*
-vimeo_*.json
-tools/study*_fakes.py
-data
-.history

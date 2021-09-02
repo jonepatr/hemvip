@@ -1,9 +1,9 @@
 {
-  "name": "webMUSHRA",
-  "version": "1.4.2",
-  "description": "Web Audio API based Listening Experiment Framework",
-  "author": "International Audio Laboratories Erlangen",
-  "repository": "https://github.com/audiolabs/webMUSHRA",
+  "name": "HEMVIP",
+  "version": "1.0.0",
+  "description": "Experiment framework based on webMUSHRA for comparing videos in a MUSHRA-like way",
+  "author": "Patrik Jonell and contributors",
+  "repository": "https://github.com/jonepatr/hemvip",
   "main": "Gruntfile.js",
   "directories": {
     "test": "test"
@@ -13,7 +13,7 @@
     "start": ""
   },
   "keywords": [
-    "MUSHRA"
+    "HEMVIP"
   ],
   "devDependencies": {
     "grunt": "^1.0.1",

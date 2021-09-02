@@ -1,16 +1,18 @@
+#
+# Copyright (C) Patrik Jonell and contributors 2021.
+# Licensed under the MIT license. See LICENSE.txt file in the project root for details.
+#
+
 import json
 import os
-import random
 import re
-from glob import glob
+from datetime import datetime, timedelta
 from pathlib import Path
 
-from fastapi import FastAPI, Form, Query, Request
+from fastapi import FastAPI, Form, Query
 from fastapi.staticfiles import StaticFiles
 from pymongo import MongoClient
 from starlette.responses import FileResponse, PlainTextResponse
-from datetime import datetime, timedelta
-
 
 app = FastAPI(docs_url=None, redoc_url=None)
 app.mount("/prolific/lib", StaticFiles(directory="lib"), name="lib")

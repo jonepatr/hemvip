@@ -1,3 +1,8 @@
+#
+# Copyright (C) Patrik Jonell and contributors 2021.
+# Licensed under the MIT license. See LICENSE.txt file in the project root for details.
+#
+
 FROM python
 RUN pip install pymongo ipython
 CMD ipython

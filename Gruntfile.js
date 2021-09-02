@@ -1,4 +1,13 @@
 /* global module:false */
+
+/*************************************************************************
+Portions Copyright (C) Patrik Jonell and contributors 2021.
+
+This file was edited 2021-09-02 by Patrik Jonell. All rights reserved.
+These contributions are licensed under the MIT license. See LICENSE.txt for details.
+
+**************************************************************************/
+
 module.exports = function(grunt) {
     var port = grunt.option('port') || 8000;
     // Project configuration
@@ -96,9 +105,6 @@ module.exports = function(grunt) {
                   dest: '/'
                 }, {
                   src: [ 'configs/**' ],
-                  dest: '/'
-                }, {
-                  src: [ 'favicon.ico' ],
                   dest: '/'
                 }, {
                   src: [ 'service/**' ],
