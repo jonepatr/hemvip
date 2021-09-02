@@ -46,9 +46,3 @@ The finish page must be the last page of the experiment.
 * **showResults** The results are shown to the participant.  
 * **writeResults** The results are sent to the remote service (which writes the results into a file).
 
-
-## Results
-
-The results are stored in the folder "/results". 
-For each experiment, a subfolder is created having the name of the **testid** option. 
-For each type of listening test, a CSV (comma separated values) file is created what contains the results.
