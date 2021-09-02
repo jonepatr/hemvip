@@ -45,7 +45,6 @@ Place your configuration in the `configs/my_first_experiment` folder. Your confi
 ## Documentation
 
  * [Experimenters Manual](doc/experimenter.md)
- * [Participants Manual](doc/participant.md)
 
 ## Citation
 
