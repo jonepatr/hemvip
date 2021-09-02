@@ -36,18 +36,6 @@ A generic page contains any content in HTML (e.g. useful for showing the instruc
 * **name** Name of the page (is shown as title)
 * **content** Content (HTML) of the page.
 
-
-#### `volume` page
-
-The volume page can be used to set the volume used in the experiment.
-
-* **type** must be volume.
-* **id** Identifier of the page.
-* **name** Name of the page (is shown as title)
-* **content** Content (HTML) of the page.
-* **stimulus** Filepath to the stimulus that is used for setting the volume.
-* **defaultVolume** Default volume (must be between 0.0 and 1.0).
-
 #### `finish` page
 
 The finish page must be the last page of the experiment.

@@ -72,9 +72,6 @@ function addPagesToPageManager(_pageManager, _pages) {
       var pageConfig = _pages[i];
       if (pageConfig.type == "generic") {
         _pageManager.addPage(new GenericPage(_pageManager, pageConfig));
-      } else if (pageConfig.type == "volume") {
-        var volumePage = new VolumePage(_pageManager, audioContext, audioFileLoader, pageConfig, config.bufferSize, errorHandler, config.language);
-        _pageManager.addPage(volumePage);
       } else if (pageConfig.type == "video") {
         var videoPage = new VideoPage(_pageManager, pageTemplateRenderer, session, config, pageConfig, errorHandler, config.language);
         _pageManager.addPage(videoPage);
@@ -137,8 +134,6 @@ function startup(config) {
   localizer.initializeNLSFragments(nls);
 
   pageManager = null;
-  audioContext;
-  audioFileLoader = null;
   dataSender = null;
   session = null;
   pageTemplateRenderer = null;
@@ -148,31 +143,7 @@ function startup(config) {
   $('#header').append(document.createTextNode(config.testname));
 
   pageManager = new PageManager("pageManager", "page_content", localizer);
-  window.AudioContext = window.AudioContext || window.webkitAudioContext;
 
-  if (typeof AudioContext !== 'undefined') {
-    audioContext = new AudioContext();
-  } else if (typeof webkitAudioContext !== 'undefined') {
-    audioContext = new webkitAudioContext();
-  }
-
-  document.addEventListener("click", function () {
-    if (audioContext.state !== 'running') {
-      audioContext.resume();
-    }
-  }, true);
-
-  try {
-    audioContext.destination.channelCountMode = "explicit";
-    audioContext.destination.channelInterpretation = "discrete";
-    audioContext.destination.channelCount = audioContext.destination.maxChannelCount;
-  } catch (e) {
-    console.log("webMUSHRA: Could not set channel count of destination node.");
-    console.log(e);
-  }
-  audioContext.volume = 1.0;
-
-  audioFileLoader = new AudioFileLoader(audioContext, errorHandler);
   dataSender = new DataSender(config);
 
   session = new Session();
@@ -189,11 +160,9 @@ function startup(config) {
 
   addPagesToPageManager(pageManager, config.pages);
 
-  interval2 = setInterval(function () {
-    clearInterval(interval2);
-    audioFileLoader.startLoading(callbackFilesLoaded);
+  setTimeout(function () {
+    callbackFilesLoaded()
   }, 10);
-
 }
 
 // start code (loads config) 
@@ -217,8 +186,6 @@ configFile = '/configs/' + testId + "/" + userId
 var errorHandler = new ErrorHandler();
 var localizer = null;
 var pageManager = null;
-var audioContext = null;
-var audioFileLoader = null;
 var dataSender = null;
 var session = null;
 var pageTemplateRenderer = null;

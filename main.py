@@ -50,19 +50,22 @@ def fail(user_id=Form(...), test_id=Form(...), sessionJSON=Form(...)):
 
     data = json.loads(sessionJSON)
     ended_date = datetime.now()
-    data["ended"] = ended_date
+    data["date"] = ended_date
     db.fail_responses.insert_one(data)
 
-    db.status.update(
-        {"userId": user_id, "testId": test_id},
-        {"$set": {"status": "FAILED", "ended": datetime.now()}},
-    )
-    return {}
+    if db.fail_responses.count_documents({"userId": user_id}) > 1:
+        db.status.update(
+            {"userId": user_id, "testId": test_id},
+            {"$set": {"status": "FAILED", "ended": datetime.now()}},
+        )
+        return True
+    else:
+        return False
 
 
 @app.get("/failed_task", response_class=PlainTextResponse)
 def failed():
-    return "Sorry, you have failed our attention checks."
+    return "Sorry, you have failed several attention checks. Even if you press back, and redo the study, your responses won't be registered."
 
 
 @app.post("/partial")
@@ -133,6 +136,8 @@ def index(
                 "experiment_file": str(potential_files[0]),
                 "testId": test_id,
                 "userId": PROLIFIC_PID,
+                "studyId": STUDY_ID,
+                "sessionId": SESSION_ID,
                 "date": datetime.now(),
             }
         )

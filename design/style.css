@@ -230,11 +230,6 @@ td.stopButton {
   margin:0.5em auto;
 }
 
-.fileplayer_progressbar {
-  width: 10em;
-  height: 1.5em;    
-}
-
 /* grey background of the wavesurfer behind the slider*/
 #slider {
 	z-index:10;
