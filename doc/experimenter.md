@@ -57,7 +57,7 @@ A video page showing 2 videos, for pairwise comparison.
 * **id** Identifier of the page.
 * **name** Name of the page (is shown as title)
 * **content** Content (HTML) of the page.
-* **question** Question that accompanies the pairwise comparison. 
+* **question** Question that accompanies the pairwise comparison.
 * **stimuli** List of conditions with URLs to Vimeo videos.
 
 #### `finish` page
@@ -72,7 +72,7 @@ The finish page must be the last page of the experiment.
 
 #### Example JSON File
 
-`{
+```{
   "testname": "Experiment",
   "stopOnErrors": true,
   "remoteService": "/save",
@@ -198,4 +198,4 @@ The finish page must be the last page of the experiment.
                },
   ],
   "remoteFailService": "/fail"
-  }`
+  }```
