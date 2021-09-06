@@ -1,5 +1,7 @@
 # HEMVIP
-
+<p align="center">
+  <img src="design/images/screenshot.png" />
+</p>
 
 ## Introduction
 
