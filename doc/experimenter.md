@@ -79,16 +79,16 @@ The finish page must be the last page of the experiment.
   "remoteService": "/save",
   "pages": [
       {
-        "type": "generic"
-        "id" : "first_page"
-        "name" : "Name of the first page, used as heading on the page."
+        "type": "generic",
+        "id" : "first_page",
+        "name" : "Name of the first page, used as heading on the page.",
         "content" : "Content of the page, usage of HTML tags allowed."
       },
       {
-        "type": "video"
-        "id" : "subject_x"
-        "name" : "Page 1 of Y"
-        "content" : "Rate the videos shown below"
+        "type": "video",
+        "id" : "subject_x",
+        "name" : "Page 1 of Y",
+        "content" : "Rate the videos shown below",
         "question" : "How human-like was the agent in this video?",
         "stimuli": [
           [
