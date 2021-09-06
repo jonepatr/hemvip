@@ -72,7 +72,8 @@ The finish page must be the last page of the experiment.
 
 #### Example JSON File
 
-```{
+```
+{
   "testname": "Experiment",
   "stopOnErrors": true,
   "remoteService": "/save",
@@ -198,4 +199,5 @@ The finish page must be the last page of the experiment.
                },
   ],
   "remoteFailService": "/fail"
-  }```
+  }
+  ```
