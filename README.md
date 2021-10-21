@@ -51,11 +51,35 @@ Place your configuration in the `configs/my_first_experiment` folder. Your confi
 ## Citation
 
 ```
-@inproceedings{jonell2021hemvip,
-  title={HEMVIP: Human Evaluation of Multiple Videos in Parallel},
-  author={Patrik Jonell and Youngwoo Yoon and Pieter Wolfert and Taras Kucherenko and Gustav Eje Henter},
-  booktitle={Proceedings of the 23rd ACM International Conference on Multimodal Interaction},
-  year={2021}
+@inproceedings{10.1145/3462244.3479957,
+author = {Jonell, Patrik and Yoon, Youngwoo and Wolfert, Pieter and Kucherenko, Taras and Henter, Gustav Eje},
+title = {HEMVIP: Human Evaluation of Multiple Videos in Parallel},
+year = {2021},
+isbn = {9781450384810},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/3462244.3479957},
+doi = {10.1145/3462244.3479957},
+abstract = { In many research areas, for example motion and gesture generation, objective measures
+alone do not provide an accurate impression of key stimulus traits such as perceived
+quality or appropriateness. The gold standard is instead to evaluate these aspects
+through user studies, especially subjective evaluations of video stimuli. Common evaluation
+paradigms either present individual stimuli to be scored on Likert-type scales, or
+ask users to compare and rate videos in a pairwise fashion. However, the time and
+resources required for such evaluations scale poorly as the number of conditions to
+be compared increases. Building on standards used for evaluating the quality of multimedia
+codecs, this paper instead introduces a framework for granular rating of multiple
+comparable videos in parallel. This methodology essentially analyses all condition
+pairs at once. Our contributions are 1) a proposed framework, called HEMVIP, for parallel
+and granular evaluation of multiple video stimuli and 2) a validation study confirming
+that results obtained using the tool are in close agreement with results of prior
+studies using conventional multiple pairwise comparisons.},
+booktitle = {Proceedings of the 2021 International Conference on Multimodal Interaction},
+pages = {707–711},
+numpages = {5},
+keywords = {evaluation paradigms, gesture generation, conversational agents, video evaluation},
+location = {Montr\'{e}al, QC, Canada},
+series = {ICMI '21}
 }
 ```
 
