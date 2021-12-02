@@ -51,7 +51,7 @@ Place your configuration in the `configs/my_first_experiment` folder. Your confi
 ## Citation
 
 ```
-@inproceedings{10.1145/3462244.3479957,
+@inproceedings{jonell_2021_hemvip,
 author = {Jonell, Patrik and Yoon, Youngwoo and Wolfert, Pieter and Kucherenko, Taras and Henter, Gustav Eje},
 title = {HEMVIP: Human Evaluation of Multiple Videos in Parallel},
 year = {2021},
