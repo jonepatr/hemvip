@@ -75,12 +75,15 @@ function addPagesToPageManager(_pageManager, _pages) {
       } else if (pageConfig.type == "video") {
         var videoPage = new VideoPage(_pageManager, pageTemplateRenderer, session, config, pageConfig, errorHandler, config.language);
         _pageManager.addPage(videoPage);
+      } else if (pageConfig.type == "videopc") {
+        var videoPCPage = new VideoPC(_pageManager, pageTemplateRenderer, session, config, pageConfig, errorHandler, config.language);
+        _pageManager.addPage(videoPCPage);
       } else if (pageConfig.type == "finish") {
         var finishPage = new FinishPage(_pageManager, session, dataSender, pageConfig, config.language);
         _pageManager.addPage(finishPage);
       } else {
 
-        errorHandler.sendError("Type not specified.");
+        errorHandler.sendError("Type not specified help.");
 
       }
     }

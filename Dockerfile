@@ -5,4 +5,4 @@
 
 FROM tiangolo/uvicorn-gunicorn-fastapi
 COPY ./ /app
-RUN pip install aiofiles python-multipart pymongo==3.11.1
+RUN pip install aiofiles python-multipart pymongo==3.11.2

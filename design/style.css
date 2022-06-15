@@ -3,11 +3,6 @@
 
 This source code is protected by copyright law and international treaties. This source code is made available to You subject to the terms and conditions of the Software License for the webMUSHRA.js Software. Said terms and conditions have been made available to You prior to Your download of this source code. By downloading this source code You agree to be bound by the above mentionend terms and conditions, which can also be found here: https://www.audiolabs-erlangen.de/resources/webMUSHRA. Any unauthorised use of this source code may result in severe civil and criminal penalties, and will be prosecuted to the maximum extent possible under law. 
 
-Portions Copyright (C) Patrik Jonell and contributors 2021.
-
-This file was edited 2021-09-02 by Patrik Jonell. All rights reserved.
-These contributions are licensed under the MIT license. See LICENSE.txt for details.
-
 **************************************************************************/
 
 
@@ -64,6 +59,33 @@ input[type=number] {
   height: 400px;
   margin: auto;
   width: 710px;
+}
+
+#main-video-frame-pc {
+  height: 400px;
+  margin: auto;
+  width: 1200px;
+}
+
+#video-checkbox {
+    height: 200px;
+    padding-top: 20px;
+    margin: auto;
+    width: 1200px;
+}
+
+#video_0{
+  float: left;
+  align-items: center;
+  width: 50%;
+  height: 100%;
+}
+
+#video_1{
+  float: right;
+  align-items: center;
+  width: 50%;
+  height: 100%;
 }
 
 #video-placeholder {
@@ -145,6 +167,12 @@ body.ui-mobile-viewport, div.ui-mobile-viewport {
   position: relative;
 }
 
+
+#tableBS1116 {
+  border-spacing: 0.4em;
+  position: relative;
+}
+
 td.logo {
   padding: 0 0.5em 0 0.5em;
 }
@@ -179,6 +207,10 @@ td.stopButton {
 
 #conditionNameScale {
   width: 12em;
+}
+
+#BS1116conditionNameScale {
+	width:13em;
 }
 
 #buttonStop, .audioControlElement {
@@ -228,6 +260,11 @@ td.stopButton {
   width: 30em;
   height: 1em;  
   margin:0.5em auto;
+}
+
+.fileplayer_progressbar {
+  width: 10em;
+  height: 1.5em;    
 }
 
 /* grey background of the wavesurfer behind the slider*/

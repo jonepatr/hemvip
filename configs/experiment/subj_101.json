@@ -1,0 +1,423 @@
+{
+    "testname": "Experiment",
+    "stopOnErrors": true,
+    "remoteService": "/save",
+    "pages": [
+        {
+            "type": "generic",
+            "id": "first_page",
+            "name": "Rating virtual character gesticulation: Instructions page",
+            "content": "<br><div style=\"text-align: left\">Hello</div>"
+        },
+        {
+            "type": "video",
+            "id": "subject_72",
+            "name": "Page 1 of 22",
+            "content": "Rate the videos shown below",
+            "question": "How human-like was the agent in this video? ",
+            "stimuli": [
+                [
+                    "C1",
+                    "https://player.vimeo.com/video/512537769?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=205435"
+                ],
+                [
+                    "C2",
+                    "https://player.vimeo.com/video/512544079?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=205435"
+                ]
+            ]
+        },
+        {
+            "type": "video",
+            "id": "subject_72",
+            "name": "Page 2 of 22",
+            "content": "Rate the videos shown below",
+            "question": "How human-like was the agent in this video? ",
+            "stimuli": [
+                [
+                    "C1",
+                    "https://player.vimeo.com/video/512537311?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=205435"
+                ],
+                [
+                    "C2",
+                    "https://player.vimeo.com/video/512543169?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=205435"
+                ]
+            ]
+        },
+        {
+            "type": "video",
+            "id": "subject_72",
+            "name": "Page 3 of 22",
+            "content": "Rate the videos shown below",
+            "question": "How human-like was the agent in this video? ",
+            "stimuli": [
+                [
+                    "C1",
+                    "https://player.vimeo.com/video/512543255?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=205435"
+                ],
+                [
+                    "C2",
+                    "https://player.vimeo.com/video/512537337?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=205435"
+                ]
+            ]
+        },
+        {
+            "type": "video",
+            "id": "subject_72",
+            "name": "Page 4 of 22",
+            "content": "Rate the videos shown below",
+            "question": "How human-like was the agent in this video? ",
+            "stimuli": [
+                [
+                    "C1",
+                    "https://player.vimeo.com/video/512537639?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=205435"
+                ],
+                [
+                    "C2",
+                    "https://player.vimeo.com/video/512543853?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=205435"
+                ]
+            ]
+        },
+        {
+            "type": "video",
+            "id": "subject_72",
+            "name": "Page 5 of 22",
+            "content": "Rate the videos shown below",
+            "question": "How human-like was the agent in this video? ",
+            "stimuli": [
+                [
+                    "C1",
+                    "https://player.vimeo.com/video/512538567?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=205435"
+                ],
+                [
+                    "C2",
+                    "https://player.vimeo.com/video/512544915?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=205435"
+                ]
+            ]
+        },
+        {
+            "type": "video",
+            "id": "subject_72",
+            "name": "Page 6 of 22",
+            "content": "Rate the videos shown below",
+            "question": "How human-like was the agent in this video? ",
+            "stimuli": [
+                [
+                    "C1",
+                    "https://player.vimeo.com/video/512543443?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=205435"
+                ],
+                [
+                    "C2",
+                    "https://player.vimeo.com/video/512537409?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=205435"
+                ]
+            ]
+        },
+        {
+            "type": "video",
+            "id": "subject_72",
+            "name": "Page 7 of 22",
+            "content": "Rate the videos shown below",
+            "question": "How human-like was the agent in this video? ",
+            "stimuli": [
+                [
+                    "at",
+                    "https://player.vimeo.com/video/516176171?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=205435"
+                ],
+                [
+                    "at",
+                    "https://player.vimeo.com/video/512544976?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=205435"
+                ]
+            ]
+        },
+        {
+            "type": "video",
+            "id": "subject_72",
+            "name": "Page 8 of 22",
+            "content": "Rate the videos shown below",
+            "question": "How human-like was the agent in this video? ",
+            "stimuli": [
+                [
+                    "C1",
+                    "https://player.vimeo.com/video/512538486?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=205435"
+                ],
+                [
+                    "C2",
+                    "https://player.vimeo.com/video/512544849?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=205435"
+                ]
+            ]
+        },
+        {
+            "type": "video",
+            "id": "subject_72",
+            "name": "Page 9 of 22",
+            "content": "Rate the videos shown below",
+            "question": "How human-like was the agent in this video? ",
+            "stimuli": [
+                [
+                    "C1",
+                    "https://player.vimeo.com/video/512537220?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=205435"
+                ],
+                [
+                    "C2",
+                    "https://player.vimeo.com/video/512542975?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=205435"
+                ]
+            ]
+        },
+        {
+            "type": "video",
+            "id": "subject_72",
+            "name": "Page 10 of 22",
+            "content": "Rate the videos shown below",
+            "question": "How human-like was the agent in this video? ",
+            "stimuli": [
+                [
+                    "C1",
+                    "https://player.vimeo.com/video/512544349?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=205435"
+                ],
+                [
+                    "C2",
+                    "https://player.vimeo.com/video/512538006?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=205435"
+                ]
+            ]
+        },
+        {
+            "type": "video",
+            "id": "subject_72",
+            "name": "Page 11 of 22",
+            "content": "Rate the videos shown below",
+            "question": "How human-like was the agent in this video? ",
+            "stimuli": [
+                [
+                    "C1",
+                    "https://player.vimeo.com/video/512537891?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=205435"
+                ],
+                [
+                    "C2",
+                    "https://player.vimeo.com/video/512544222?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=205435"
+                ]
+            ]
+        },
+        {
+            "type": "videopc",
+            "id": "subject_72",
+            "name": "Page 12 of 22",
+            "content": "In which video are the character\u2019s movements most human-like?",
+            "question": "In which video are the character\u2019s movements most human-like? ",
+            "stimuli": [
+                [
+                    "C1",
+                    "https://player.vimeo.com/video/512537769?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=205435"
+                ],
+                [
+                    "C2",
+                    "https://player.vimeo.com/video/512544079?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=205435"
+                ]
+            ]
+        },
+        {
+            "type": "videopc",
+            "id": "subject_72",
+            "name": "Page 13 of 22",
+            "content": "In which video are the character\u2019s movements most human-like?",
+            "question": "In which video are the character\u2019s movements most human-like? ",
+            "stimuli": [
+                [
+                    "C1",
+                    "https://player.vimeo.com/video/512537311?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=205435"
+                ],
+                [
+                    "C2",
+                    "https://player.vimeo.com/video/512543169?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=205435"
+                ]
+            ]
+        },
+        {
+            "type": "videopc",
+            "id": "subject_72",
+            "name": "Page 14 of 22",
+            "content": "In which video are the character\u2019s movements most human-like?",
+            "question": "In which video are the character\u2019s movements most human-like? ",
+            "stimuli": [
+                [
+                    "C1",
+                    "https://player.vimeo.com/video/512543255?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=205435"
+                ],
+                [
+                    "C2",
+                    "https://player.vimeo.com/video/512537337?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=205435"
+                ]
+            ]
+        },
+        {
+            "type": "finish",
+            "name": "Thank you",
+            "content": "Thank you for your participation! <br> *required fields<br><br>",
+            "showResults": false,
+            "writeResults": true,
+            "questionnaire": [
+                {
+                    "type": "number",
+                    "label": "*What's your age in years?",
+                    "name": "age",
+                    "min": 0,
+                    "max": 100,
+                    "default": 0
+                },
+                {
+                    "type": "options",
+                    "name": "gender",
+                    "label": "*How would you identify yourself (gender)?",
+                    "response": [
+                        {
+                            "value": "female",
+                            "label": "Female"
+                        },
+                        {
+                            "value": "male",
+                            "label": "Male"
+                        },
+                        {
+                            "value": "other",
+                            "label": "Other"
+                        }
+                    ]
+                },
+                {
+                    "type": "text",
+                    "label": "*What's your nationality?",
+                    "name": "nationality"
+                },
+                {
+                    "type": "options",
+                    "name": "education",
+                    "label": "*What's your level of education?",
+                    "response": [
+                        {
+                            "value": "some_highschool",
+                            "label": "Some high school"
+                        },
+                        {
+                            "value": "highschool",
+                            "label": "High School diploma"
+                        },
+                        {
+                            "value": "bachelors",
+                            "label": "Bachelor's degree"
+                        },
+                        {
+                            "value": "masters",
+                            "label": "Master's Degree"
+                        },
+                        {
+                            "value": "doctorate",
+                            "label": "Doctoral Degree"
+                        }
+                    ]
+                },
+                {
+                    "type": "likert",
+                    "label": "How skilled are you with computers?",
+                    "name": "video_games",
+                    "response": [
+                        {
+                            "value": "1",
+                            "label": "1 - Not at all"
+                        },
+                        {
+                            "value": "2",
+                            "label": "2"
+                        },
+                        {
+                            "value": "3",
+                            "label": "3"
+                        },
+                        {
+                            "value": "4",
+                            "label": "4 - Moderately"
+                        },
+                        {
+                            "value": "5",
+                            "label": "5"
+                        },
+                        {
+                            "value": "6",
+                            "label": "6"
+                        },
+                        {
+                            "value": "7",
+                            "label": "7 - Extremely"
+                        }
+                    ]
+                },
+                {
+                    "type": "options",
+                    "name": "task_difficulty",
+                    "label": "*Please indicate to what extent you agree or disagree with this statement: <br>\"This task was really easy\"",
+                    "response": [
+                        {
+                            "value": "disagree",
+                            "label": "Disagree"
+                        },
+                        {
+                            "value": "slightly_disagree",
+                            "label": "Slightly disagree"
+                        },
+                        {
+                            "value": "neutral",
+                            "label": "Neither agree nor disagree"
+                        },
+                        {
+                            "value": "slightly_agree",
+                            "label": "Slightly agree"
+                        },
+                        {
+                            "value": "agree",
+                            "label": "Agree"
+                        }
+                    ]
+                },
+                {
+                    "type": "long_text",
+                    "label": "*What did you like the most about doing this study?",
+                    "name": "liked_most"
+                },
+                {
+                    "type": "long_text",
+                    "label": "*What did you like the least about doing this study?",
+                    "name": "liked_least"
+                },
+                {
+                    "type": "options",
+                    "name": "ratingvspair",
+                    "label": "*What type of evaluation do you prefer?",
+                    "response": [
+                        {
+                            "value": "rating",
+                            "label": "Rating videos on a scale from 1 to 5"
+                        },
+                        {
+                            "value": "pairwise",
+                            "label": "Selecting my preferred video out of 2 videos"
+                        }
+                    ]
+                },
+                {
+                    "type": "long_text",
+                    "label": "*Was the compensation given for your participation in this study adequate? If not, state what would be appropriate and why.",
+                    "name": "compenation"
+                },
+                {
+                    "type": "long_text",
+                    "label": "*Is there anything you would like us to change about this evaluation?",
+                    "name": "change"
+                },
+                {
+                    "type": "long_text",
+                    "label": "Any other comments?",
+                    "name": "other",
+                    "optional": true
+                }
+            ]
+        }
+    ],
+    "remoteFailService": "/fail"
+}
