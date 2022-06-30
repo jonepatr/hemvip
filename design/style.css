@@ -218,6 +218,11 @@ td.stopButton {
   margin : 0 auto;
 }
 
+.reloadControlElement {
+  width: 6.0em !important;
+  margin : 0 auto;
+}
+
 #mainUp {
   width : 100%;
 }
