@@ -108,7 +108,7 @@ function startup(config) {
   }
 
   if ($(window).width() < 1100) {
-    errorHandler.sendError("Please use a computer for this experiment.");
+    errorHandler.sendError("Please use a computer for this experiment. If you’re already using a computer, please maximize your internet browser and enter the page again. If you still see this message, your environment is not adequate for this task; please return the task. Sorry for your inconvenience.");
   }
 
   if (navigator.appName == 'Microsoft Internet Explorer') {
