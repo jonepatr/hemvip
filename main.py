@@ -53,7 +53,7 @@ def fail(user_id=Form(...), test_id=Form(...), sessionJSON=Form(...)):
     data["date"] = ended_date
     db.fail_responses.insert_one(data)
 
-    if db.fail_responses.count_documents({"userId": user_id}) > 1:
+    if db.fail_responses.count_documents({"userId": user_id}) > 0:
         db.status.update(
             {"userId": user_id, "testId": test_id},
             {"$set": {"status": "FAILED", "ended": datetime.now()}},
