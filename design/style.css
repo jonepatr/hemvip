@@ -220,6 +220,7 @@ td.stopButton {
 
 .reloadControlElement {
   width: 6.0em !important;
+  white-space: normal;
   margin : 0 auto;
 }
 
