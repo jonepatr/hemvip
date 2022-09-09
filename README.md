@@ -8,6 +8,9 @@
 Stimuli tests with videos are often used in the field of non verbal behavior generation. From the field of audio listening tests, we have adapted the [webMUSHRA.js Software](https://github.com/audiolabs/webMUSHRA) to make it possible to use the software for the simultaneous assessment of videos.
 This tool currently works with [Prolific](https://prolific.co/) but should be easy to adapt to other platforms or run as stand-alone. Read more about the prolific settings in the configuration section.
 
+### GENEA 2022 Branch
+Currently, this repository contains two branches. The master branch is the official HEMVIP release repository. For the GENEA 2022 challenge, some changes (see features) have been made to address issues with pairwise testing and rating. The GENEA 2022 branch has been tested and used for the challenge, and comes with the same license. 
+
 ### Download
 
 Currently, it is required to clone this repository to get started.
@@ -16,8 +19,12 @@ Currently, it is required to clone this repository to get started.
 
 * Ability to test with videos, and include attention checks
 * Handles rejections based on attention checks
-* Saves data to mongodb
-* Allows for showing a questionannaire or custom html content as pages
+* Saves data to MongoDB
+* Allows for showing a questionnaire or custom HTML content as pages
+
+## Features (GENEA 2022 Branch)
+* Pairwise video testing
+* Attention checks with automatic failure detection and redirection to Prolific
 
 ## Supported Browsers
 
@@ -31,7 +38,7 @@ You can use docker to set up HEMVIP quickly. Just run
 To run the container use `docker-compose -f docker-compose.yml up`. We configured the docker image so that the `configs`  folder is mounted inside the container so that you can modify it on the fly.
 
 In order to assess the results that are stored in the MongoDB, you need to either use the `docker-compose_dev.yml` file or add the relevant ports to the original file.
-This way, you can access the database and export the experimental results. 
+This way, you can access the database and export the experimental results.
 
 #### Note for Docker on Windows
 
