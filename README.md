@@ -23,7 +23,7 @@ Currently, it is required to clone this repository to get started.
 * Allows for showing a questionnaire or custom HTML content as pages
 
 ## Features (GENEA 2022 Branch)
-* Pairwise video testing
+* Pairwise video testing (see doc/experimenters.md for more info)
 * Attention checks with automatic failure detection and redirection to Prolific
 
 ## Supported Browsers
